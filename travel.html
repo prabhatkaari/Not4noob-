@@ -1,44 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Travel Page</title>
-    <style>
-        body {
-            background-color: #2a003f;
-            color: #a0522d;
-            font-family: sans-serif;
-            text-shadow: 1px 1px 2px black;
-            background-image: url('leaves-background.jpg'); /* Optional */
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            padding: 20px;
-        }
-        a {
-            color: #fff;
-            text-decoration: none;
-            background: #a0522d;
-            padding: 8px 12px;
-            border-radius: 5px;
-            box-shadow: 1px 1px 3px black;
-        }
-        a:hover {
-            background: #8b4513;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Travel Page</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      background-color: #2e003e;
+      background-image: url('https://www.transparenttextures.com/patterns/leaf.png');
+      color: #a9745c;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      text-shadow: 1px 1px 0 black;
+    }
+
+    h1, h2 {
+      text-align: center;
+    }
+
+    nav {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    nav a {
+      margin: 0 15px;
+      color: #a9745c;
+      text-decoration: none;
+      font-weight: bold;
+      border: 2px solid #a9745c;
+      padding: 5px 15px;
+      border-radius: 10px;
+      background-color: rgba(0,0,0,0.2);
+      text-shadow: 1px 1px 0 black;
+    }
+
+    canvas {
+      display: block;
+      margin: 30px auto;
+      max-width: 600px;
+    }
+
+    .section {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+      background-color: rgba(255,255,255,0.05);
+      border-radius: 15px;
+    }
+  </style>
 </head>
 <body>
-    <h1>Explore Travel Destinations</h1>
-    <p>Here you will find amazing places to visit, from mountains to beaches and everything in between.</p>
 
-    <ul>
-        <li>🏞️ Manali</li>
-        <li>🏖️ Goa</li>
-        <li>⛰️ Leh Ladakh</li>
-        <li>🌆 Mumbai</li>
-    </ul>
+  <h1>Travel Plans Overview</h1>
 
-    <p><a href="index.html">← Back to Home</a></p>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="travel.html">Travel</a>
+  </nav>
+
+  <!-- Bar Chart -->
+  <canvas id="barChart" width="400" height="300"></canvas>
+
+  <!-- Trekking Section -->
+  <div class="section">
+    <h2>Trekking Adventures</h2>
+    <p>Trekking through the Himalayas offers a breathtaking experience. From Kedarkantha to Valley of Flowers, every trail reveals stunning beauty, peace, and a connection with nature. Plan your trek based on your fitness level and season.</p>
+  </div>
+
+  <!-- Pie Chart -->
+  <div class="section">
+    <h2>Transport Mode Usage</h2>
+    <canvas id="pieChart" width="400" height="300"></canvas>
+  </div>
+
+  <script>
+    // Bar Chart
+    const barCtx = document.getElementById('barChart').getContext('2d');
+    const barChart = new Chart(barCtx, {
+      type: 'bar',
+      data: {
+        labels: ['Char Dham Yatra', 'Trekking', 'Har Ki Pauri', 'Bus', 'Flight', 'Car Rental'],
+        datasets: [{
+          label: 'Interest Level (1–10)',
+          data: [9, 8, 7, 6, 5, 4],
+          backgroundColor: [
+            '#7c3aed',
+            '#9333ea',
+            '#a855f7',
+            '#c084fc',
+            '#d8b4fe',
+            '#f3e8ff'
+          ],
+          borderColor: 'black',
+          borderWidth: 2
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: { color: '#a9745c' }
+          },
+          x: {
+            ticks: { color: '#a9745c' }
+          }
+        },
+        plugins: {
+          legend: {
+            labels: {
+              color: '#a9745c',
+              font: { weight: 'bold' }
+            }
+          }
+        }
+      }
+    });
+
+    // Pie Chart
+    const pieCtx = document.getElementById('pieChart').getContext('2d');
+    const pieChart = new Chart(pieCtx, {
+      type: 'pie',
+      data: {
+        labels: ['Bus', 'Flight', 'Car Rental'],
+        datasets: [{
+          label: 'Transport Use',
+          data: [40, 30, 30],
+          backgroundColor: ['#a855f7', '#d946ef', '#f472b6'],
+          borderColor: 'black',
+          borderWidth: 2
+        }]
+      },
+      options: {
+        plugins: {
+          legend: {
+            labels: {
+              color: '#a9745c',
+              font: { weight: 'bold' }
+            }
+          }
+        }
+      }
+    });
+  </script>
+
 </body>
 </html>
